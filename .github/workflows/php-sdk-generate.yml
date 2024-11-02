@@ -28,6 +28,7 @@ jobs:
 
       - name: Run generator
         run: |
+          ls -la
           cd src
           composer install
           composer sdk:public
