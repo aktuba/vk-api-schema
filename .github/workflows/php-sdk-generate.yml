@@ -8,7 +8,7 @@ jobs:
       - name: Checkout generator
         uses: actions/checkout@v4
         with:
-          repository: aktuba/php-sdk
+          repository: aktuba/php-sdk-generator
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Log
