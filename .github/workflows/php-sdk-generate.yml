@@ -10,11 +10,21 @@ jobs:
         with:
           repository: VKCOM/vk-api-schema
 
+      - name: Log
+        run: |
+          pwd
+          ls -la
+
       - name: Checkout json schema
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           path: schema/build/public
+
+      - name: Log
+        run: |
+          pwd
+          ls -la
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
