@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: aktuba/php-sdk
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Log
         run: |
