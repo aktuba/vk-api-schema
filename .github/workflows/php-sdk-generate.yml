@@ -52,6 +52,7 @@ jobs:
           fetch-depth: 1
           repository: aktuba/php-sdk
           path: php-sdk
+          token: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Run generator
         run: |
@@ -63,5 +64,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
           git commit -m "$COMMIT_MESSAGE"
-          git push -u --force origin master
+          git push
           echo "git pushed!!!"
