@@ -60,5 +60,8 @@ jobs:
           cp -r ../generated/* .
           ls -la
           git add .
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "<>"
+          git commit -m "$COMMIT_MESSAGE"
           git push -u --force origin master
           echo "git pushed!!!"
