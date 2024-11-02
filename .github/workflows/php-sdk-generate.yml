@@ -1,0 +1,51 @@
+name: php-sdk-generate
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout generator
+        uses: actions/checkout@v4
+        with:
+          repository: aktuba/php-sdk-generator
+
+      - name: Checkout json schema
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          path: schema/build/public
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          tools: composer:v2
+        env:
+          fail-fast: true
+
+      - name: Run generator
+        run: |
+          cd src
+          composer install
+          composer sdk:public
+          cd ..
+
+      - name: Prepare php-sdk
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: aktuba/php-sdk
+          path: php-sdk
+
+      - name: Run generator
+        run: |
+          cd php-sdk
+          find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
+          cp -r ../generated/* .
+          ls -la
+          git add .
+          git push -u --force origin master
+          echo "git pushed!!!"
