@@ -63,6 +63,6 @@ jobs:
           git add .
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
-          git commit -m "$COMMIT_MESSAGE"
+          git commit -m "test"
           git push
           echo "git pushed!!!"
