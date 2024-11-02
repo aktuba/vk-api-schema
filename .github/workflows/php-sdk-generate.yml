@@ -8,7 +8,7 @@ jobs:
       - name: Checkout generator
         uses: actions/checkout@v4
         with:
-          repository: VKCOM/vk-api-schema
+          repository: aktuba/php-sdk
 
       - name: Log
         run: |
