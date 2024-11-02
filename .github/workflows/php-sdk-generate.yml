@@ -10,13 +10,11 @@ jobs:
         with:
           repository: aktuba/php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
-        env:
-          GH_TOKEN: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Log
         run: |
           pwd
-          ls -la
+          ls -la src/
 
       - name: Checkout json schema
         uses: actions/checkout@v4
@@ -27,7 +25,7 @@ jobs:
       - name: Log
         run: |
           pwd
-          ls -la
+          ls -la src/
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
