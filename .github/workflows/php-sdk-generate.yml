@@ -28,6 +28,7 @@ jobs:
 
       - name: Run generator
         run: |
+          pwd
           ls -la
           cd src
           composer install
