@@ -8,7 +8,7 @@ jobs:
       - name: Checkout generator
         uses: actions/checkout@v4
         with:
-          repository: aktuba/php-sdk-generator
+          repository: https://github.com/aktuba/php-sdk-generator.git
 
       - name: Checkout json schema
         uses: actions/checkout@v4
