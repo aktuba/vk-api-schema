@@ -11,26 +11,16 @@ jobs:
           repository: aktuba/php-sdk-generator
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
-      - name: Log
-        run: |
-          pwd
-          ls -la src/
-
       - name: Checkout json schema
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           path: schema/build/public
 
-      - name: Log
-        run: |
-          pwd
-          ls -la src/
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
@@ -59,10 +49,7 @@ jobs:
           cd php-sdk
           find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
           cp -r ../generated/* .
-          ls -la
           git add .
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
-          git commit -m "test"
           git push
-          echo "git pushed!!!"

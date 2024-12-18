@@ -468,7 +468,11 @@
         "live_covers",
         "stories_archive_count",
         "has_unseen_stories",
-        "rating"
+        "rating",
+        "is_market_market_link_attachment_enabled",
+        "is_market_message_to_bc_attachment_enabled",
+        "unread_count",
+        "videos_count"
       ]
     },
     "groups_filter": {
@@ -1041,6 +1045,11 @@
               ],
               "description": "Information about the status of video notifications for the current user.",
               "required": false
+            },
+            "videos_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Community videos number"
             }
           }
         }
@@ -1842,10 +1851,6 @@
         "currency_text": {
           "type": "string",
           "description": "Currency name"
-        },
-        "is_show_header_items_link": {
-          "description": "Shop header items link is enabled",
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "enabled": {
           "description": "Information whether the market is enabled",

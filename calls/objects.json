@@ -68,6 +68,34 @@
           "description": "Participants count"
         }
       }
+    },
+    "calls_short_credentials": {
+      "type": "object",
+      "description": "These credentials may be used to join a call without knowing a VK Join Link",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Short numeric ID of a call",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "description": "Password that can be used to join a call by short numeric ID",
+          "required": true
+        },
+        "link_without_password": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link without a password",
+          "required": true
+        },
+        "link_with_password": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link with a password",
+          "required": true
+        }
+      }
     }
   }
 }

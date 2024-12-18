@@ -110,6 +110,21 @@
         "can_edit": {
           "type": "boolean"
         },
+        "can_export_to_trackers": {
+          "type": "boolean"
+        },
+        "can_export_to_csv": {
+          "type": "boolean"
+        },
+        "can_add_moder_comment": {
+          "type": "boolean"
+        },
+        "can_add_hidden_comment": {
+          "type": "boolean"
+        },
+        "can_view_history": {
+          "type": "boolean"
+        },
         "is_deleted": {
           "type": "boolean"
         },
@@ -123,6 +138,9 @@
           "type": "boolean"
         },
         "hidden_docs": {
+          "type": "boolean"
+        },
+        "is_confidential": {
           "type": "boolean"
         },
         "private_comment": {
@@ -148,6 +166,25 @@
         "moderated": {
           "type": "integer",
           "minimum": 0
+        },
+        "screen_reader": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status_auto_update_ts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status_auto_update_reason": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ],
+          "enumNames": [
+            "need_correction_long_time",
+            "ready_for_testing_long_time"
+          ]
         }
       }
     },
@@ -217,6 +254,32 @@
         },
         "is_unread": {
           "type": "boolean"
+        },
+        "author": {
+          "$ref": "../bugtracker/objects.json#/definitions/bugtracker_comment_author"
+        },
+        "is_attachments_hidden": {
+          "type": "boolean"
+        }
+      }
+    },
+    "bugtracker_comment_author": {
+      "type": "object",
+      "properties": {
+        "author_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "moder_name": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
         }
       }
     },
