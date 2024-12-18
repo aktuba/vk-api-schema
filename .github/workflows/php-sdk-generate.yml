@@ -20,7 +20,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}
+          php-version: ${ PHP_VERSION }
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          repository: ${{ env.SDK_REPO }}
+          repository: ${ SDK_REPO }
           path: php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
