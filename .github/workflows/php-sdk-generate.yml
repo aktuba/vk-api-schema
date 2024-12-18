@@ -28,17 +28,27 @@ jobs:
           fail-fast: true
 
       - name: Create .env file
+        env:
+          NAME: ${{ secrets.NAME }}
+          DESCRIPTION: ${{ secrets.DESCRIPTION }}
+          LICENSE: ${{ secrets.LICENSE }}
+          PHP_VERSION: ${{ secrets.PHP_VERSION }}
+          USER_AGENT: ${{ secrets.USER_AGENT }}
+          SCHEMA_DIRECTORY: "schema/"
+          SDK_REPO: ${{ secrets.SDK_REPO }}
+          HOMEPAGE: ${{ secrets.HOMEPAGE }}
+          LOG_FORMAT: ${{ secrets.LOG_FORMAT }}
         run: |
           touch .env
-          echo NAME=${{ secrets.NAME }} >> .env
-          echo DESCRIPTION=${{ secrets.DESCRIPTION }} >> .env
-          echo LICENSE=${{ secrets.LICENSE }} >> .env
-          echo PHP_VERSION=${{ secrets.PHP_VERSION }} >> .env
-          echo USER_AGENT=${{ secrets.USER_AGENT }} >> .env
-          echo SCHEMA_DIRECTORY="schema/" >> .env
-          echo SDK_REPO=${{ secrets.SDK_REPO }} >> .env
-          echo HOMEPAGE=${{ secrets.HOMEPAGE }} >> .env
-          echo LOG_FORMAT=${{ secrets.LOG_FORMAT }} >> .env
+          echo NAME | base64 --decode > .env
+          echo DESCRIPTION | base64 --decode > .env
+          echo LICENSE | base64 --decode > .env
+          echo PHP_VERSION | base64 --decode > .env
+          echo USER_AGENT | base64 --decode > .env
+          echo SCHEMA_DIRECTORY | base64 --decode > .env
+          echo SDK_REPO | base64 --decode > .env
+          echo HOMEPAGE | base64 --decode > .env
+          echo LOG_FORMAT | base64 --decode > .env
           cat .env
 
       - name: Run generator
