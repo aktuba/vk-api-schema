@@ -58,6 +58,7 @@ jobs:
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Run generator
+        shell: bash {0}
         run: |
           cd php-sdk
           ls -la
