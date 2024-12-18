@@ -32,15 +32,15 @@ jobs:
       - name: Run generator
         run: |
           touch .env
-          echo NAME="${{ vars.NAME }}" >> .env
-          echo DESCRIPTION="${{ vars.DESCRIPTION }}" >> .env
-          echo LICENSE="${{ vars.LICENSE }}" >> .env
-          echo PHP_VERSION="${{ vars.PHP_VERSION }}" >> .env
-          echo USER_AGENT="${{ vars.USER_AGENT }}" >> .env
-          echo SCHEMA_DIRECTORY="schema/" >> .env
-          echo SDK_REPO="${{ vars.SDK_REPO }}" >> .env
-          echo HOMEPAGE="${{ vars.HOMEPAGE }}" >> .env
-          echo LOG_FORMAT="${{ vars.LOG_FORMAT }}" >> .env
+          echo NAME=\"${{ vars.NAME }}\" >> .env
+          echo DESCRIPTION=\"${{ vars.DESCRIPTION }}\" >> .env
+          echo LICENSE=\"${{ vars.LICENSE }}\" >> .env
+          echo PHP_VERSION=\"${{ vars.PHP_VERSION }}\" >> .env
+          echo USER_AGENT=\"${{ vars.USER_AGENT }}\" >> .env
+          echo SCHEMA_DIRECTORY=\"schema/\" >> .env
+          echo SDK_REPO=\"${{ vars.SDK_REPO }}\" >> .env
+          echo HOMEPAGE=\"${{ vars.HOMEPAGE }}\" >> .env
+          echo LOG_FORMAT=\"${{ vars.LOG_FORMAT }}\" >> .env
           composer install
           composer sdk:build
 
