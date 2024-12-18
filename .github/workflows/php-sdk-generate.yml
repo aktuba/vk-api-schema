@@ -15,20 +15,35 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          path: schema/build/public
+          path: schema/
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ secrets.PHP_VERSION }}
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
         env:
           fail-fast: true
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo NAME=${{ secrets.NAME }} >> .env
+          echo DESCRIPTION=${{ secrets.DESCRIPTION }} >> .env
+          echo LICENSE=${{ secrets.LICENSE }} >> .env
+          echo PHP_VERSION=${{ secrets.PHP_VERSION }} >> .env
+          echo USER_AGENT=${{ secrets.USER_AGENT }} >> .env
+          echo SCHEMA_DIRECTORY="schema/" >> .env
+          echo SDK_REPO=${{ secrets.SDK_REPO }} >> .env
+          echo HOMEPAGE=${{ secrets.HOMEPAGE }} >> .env
+          echo LOG_FORMAT=${{ secrets.LOG_FORMAT }} >> .env
+          cat .env
+
       - name: Run generator
         run: |
+          ls -la
           composer install
           composer sdk:build
 
@@ -36,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          repository: aktuba/php-sdk
+          repository: ${{ secrets.SDK_REPO }}
           path: php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
