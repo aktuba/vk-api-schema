@@ -9,8 +9,7 @@ jobs:
     steps:
       - name: Prepare generate
         run:
-          echo ${{ github.event.head_commit.message }}
-          echo ${{ github.event.workflow_run.head_commit.message }}
+          echo SCHEMA_COMMENT=\"${{ github.event.head_commit.message }}\" >> $GITHUB_ENV
 
       - name: Checkout generator
         uses: actions/checkout@v4
@@ -47,6 +46,7 @@ jobs:
           echo SDK_REPO=\"${{ vars.SDK_REPO }}\" >> .env
           echo HOMEPAGE=\"${{ vars.HOMEPAGE }}\" >> .env
           cat .env
+          echo $SCHEMA_COMMENT
           composer install
           composer sdk:build
 
