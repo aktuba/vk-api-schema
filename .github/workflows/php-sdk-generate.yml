@@ -66,4 +66,4 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
 #          git comment -m "Autogenerate sdk on $SCHEMA_COMMENT"
-          git push
+#          git push
