@@ -20,7 +20,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${ PHP_VERSION }
+          php-version: $PHP_VERSION
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
@@ -30,15 +30,15 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo NAME=${ NAME } >> .env
-          echo DESCRIPTION=${ DESCRIPTION } >> .env
-          echo LICENSE=${ LICENSE } >> .env
-          echo PHP_VERSION=${ PHP_VERSION } >> .env
-          echo USER_AGENT=${ USER_AGENT } >> .env
+          echo NAME=$NAME >> .env
+          echo DESCRIPTION=$DESCRIPTION >> .env
+          echo LICENSE=$LICENSE >> .env
+          echo PHP_VERSION=$PHP_VERSION >> .env
+          echo USER_AGENT=$USER_AGENT >> .env
           echo SCHEMA_DIRECTORY="schema/" >> .env
-          echo SDK_REPO=${ SDK_REPO } >> .env
-          echo HOMEPAGE=${ HOMEPAGE } >> .env
-          echo LOG_FORMAT=${ LOG_FORMAT } >> .env
+          echo SDK_REPO=$SDK_REPO >> .env
+          echo HOMEPAGE=$HOMEPAGE >> .env
+          echo LOG_FORMAT=$LOG_FORMAT >> .env
           cat .env
 
       - name: Run generator
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          repository: ${ SDK_REPO }
+          repository: $SDK_REPO
           path: php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
