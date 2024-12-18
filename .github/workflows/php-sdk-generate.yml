@@ -66,4 +66,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git comment -m "Autogenerate sdk on $SCHEMA_COMMENT"
+
+      - name: Push php-sdk
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.SDK_REPO }}
+          token: ${{ secrets.PHP_SDK_TOKEN }}
+        run:
+          cd php-sdk
           git push
