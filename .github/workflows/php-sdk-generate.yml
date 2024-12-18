@@ -1,6 +1,17 @@
 name: php-sdk-generate
 on: [push]
 
+env:
+  NAME: "vkcom/vk-php-sdk"
+  DESCRIPTION: "VK PHP SDK"
+  LICENSE: "MIT"
+  PHP_VERSION: "8.2"
+  USER_AGENT: "VK/php-sdk"
+  SCHEMA_DIRECTORY: "schema/"
+  SDK_REPO: "git@github.com:aktuba/php-sdk.git"
+  HOMEPAGE: "https://github.com/aktuba/vk-api-schema"
+  LOG_FORMAT: "%message%\n"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +31,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: $PHP_VERSION
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
@@ -29,9 +40,8 @@ jobs:
 
       - name: Create .env file
         run: |
-          printenv
           touch .env
-          echo NAME=${{ env.NAME }} >> .env
+          echo NAME=$NAME >> .env
           echo DESCRIPTION=$DESCRIPTION >> .env
           echo LICENSE=$LICENSE >> .env
           echo PHP_VERSION=$PHP_VERSION >> .env
