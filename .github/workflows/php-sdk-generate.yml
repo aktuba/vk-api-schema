@@ -49,23 +49,19 @@ jobs:
           composer install
           composer sdk:build
 
-      - uses: actions/checkout@v4
       - name: Prepare php-sdk
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           repository: ${{ vars.SDK_REPO }}
           path: php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
-        run: |
-          cd php-sdk
-          ls -la
-          find . -path .git -prune -o -exec rm -rf {} \; 2> /dev/null
 
       - name: Run generator
         run: |
           cd php-sdk
           ls -la
-          find . -path .git -prune -o -exec rm -rf {} \; 2> /dev/null
+          find .
 #          cp -r ../generated/* .
 #          git add .
 #          git config user.name "github-actions[bot]"
