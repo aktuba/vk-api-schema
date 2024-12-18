@@ -61,7 +61,7 @@ jobs:
         run: |
           cd php-sdk
           ls -la
-          find . -path ./.git -prune -o -exec rm -rfv {} \; 2> /dev/null
+          find . -path ./.git -prune -o -exec rm -rfv {} \;
           ls -la
 #          cp -r ../generated/* .
 #          git add .
