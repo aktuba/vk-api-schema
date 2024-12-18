@@ -31,7 +31,7 @@ jobs:
         run: |
           printenv
           touch .env
-          echo NAME=$NAME >> .env
+          echo NAME=${{ env.NAME }} >> .env
           echo DESCRIPTION=$DESCRIPTION >> .env
           echo LICENSE=$LICENSE >> .env
           echo PHP_VERSION=$PHP_VERSION >> .env
