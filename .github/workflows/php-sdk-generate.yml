@@ -1,16 +1,16 @@
 name: php-sdk-generate
 on: [push]
 
-env:
-  NAME: "vkcom/vk-php-sdk"
-  DESCRIPTION: "VK PHP SDK"
-  LICENSE: "MIT"
-  PHP_VERSION: "8.2"
-  USER_AGENT: "VK/php-sdk"
-  SCHEMA_DIRECTORY: "schema/"
-  SDK_REPO: "git@github.com:aktuba/php-sdk.git"
-  HOMEPAGE: "https://github.com/aktuba/vk-api-schema"
-  LOG_FORMAT: "%message%\n"
+#env:
+#  NAME: "vkcom/vk-php-sdk"
+#  DESCRIPTION: "VK PHP SDK"
+#  LICENSE: "MIT"
+#  PHP_VERSION: "8.2"
+#  USER_AGENT: "VK/php-sdk"
+#  SCHEMA_DIRECTORY: "schema/"
+#  SDK_REPO: "git@github.com:aktuba/php-sdk.git"
+#  HOMEPAGE: "https://github.com/aktuba/vk-api-schema"
+#  LOG_FORMAT: "%message%\n"
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
       - name: Create .env file
         run: |
           printenv
-          echo ${{ vars.NAME }}
+          echo ${{ env.NAME }}
           touch .env
           echo NAME=$NAME >> .env
           echo DESCRIPTION=$DESCRIPTION >> .env
