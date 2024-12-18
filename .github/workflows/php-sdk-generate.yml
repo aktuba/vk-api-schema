@@ -40,15 +40,15 @@ jobs:
           LOG_FORMAT: ${{ secrets.LOG_FORMAT }}
         run: |
           touch .env
-          echo NAME | base64 --decode > .env
-          echo DESCRIPTION | base64 --decode > .env
-          echo LICENSE | base64 --decode > .env
-          echo PHP_VERSION | base64 --decode > .env
-          echo USER_AGENT | base64 --decode > .env
-          echo SCHEMA_DIRECTORY | base64 --decode > .env
-          echo SDK_REPO | base64 --decode > .env
-          echo HOMEPAGE | base64 --decode > .env
-          echo LOG_FORMAT | base64 --decode > .env
+          echo $NAME >> .env
+          echo $DESCRIPTION >> .env
+          echo $LICENSE >> .env
+          echo $PHP_VERSION >> .env
+          echo $USER_AGENT >> .env
+          echo $SCHEMA_DIRECTORY >> .env
+          echo $SDK_REPO >> .env
+          echo $HOMEPAGE >> .env
+          echo $LOG_FORMAT >> .env
           cat .env
 
       - name: Run generator
