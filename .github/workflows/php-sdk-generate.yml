@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Prepare generate
+        run:
+          echo ${{ github.event.head_commit.message }}
+          echo ${{ github.event.workflow_run.head_commit.message }}
+
       - name: Checkout generator
         uses: actions/checkout@v4
         with:
@@ -19,9 +24,6 @@ jobs:
         with:
           fetch-depth: 1
           path: schema/
-        run:
-          echo ${{ github.event.head_commit.message }}
-          echo ${{ github.event.workflow_run.head_commit.message }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
