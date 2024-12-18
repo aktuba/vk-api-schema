@@ -41,6 +41,7 @@ jobs:
           echo SDK_REPO=\"${{ vars.SDK_REPO }}\" >> .env
           echo HOMEPAGE=\"${{ vars.HOMEPAGE }}\" >> .env
           echo LOG_FORMAT=\"${{ vars.LOG_FORMAT }}\" >> .env
+          cat .env
           composer install
           composer sdk:build
 
