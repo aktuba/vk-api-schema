@@ -1,16 +1,6 @@
 name: php-sdk-generate
-on: [push]
 
-#env:
-#  NAME: "vkcom/vk-php-sdk"
-#  DESCRIPTION: "VK PHP SDK"
-#  LICENSE: "MIT"
-#  PHP_VERSION: "8.2"
-#  USER_AGENT: "VK/php-sdk"
-#  SCHEMA_DIRECTORY: "schema/"
-#  SDK_REPO: "git@github.com:aktuba/php-sdk.git"
-#  HOMEPAGE: "https://github.com/aktuba/vk-api-schema"
-#  LOG_FORMAT: "%message%\n"
+on: [push]
 
 jobs:
   build:
@@ -32,31 +22,25 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ vars.PHP_VERSION }}
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: composer:v2
         env:
           fail-fast: true
 
-      - name: Create .env file
-        run: |
-          echo ${{ vars.NAME }}
-          touch .env
-          echo NAME=$NAME >> .env
-          echo DESCRIPTION=$DESCRIPTION >> .env
-          echo LICENSE=$LICENSE >> .env
-          echo PHP_VERSION=$PHP_VERSION >> .env
-          echo USER_AGENT=$USER_AGENT >> .env
-          echo SCHEMA_DIRECTORY="schema/" >> .env
-          echo SDK_REPO=$SDK_REPO >> .env
-          echo HOMEPAGE=$HOMEPAGE >> .env
-          echo LOG_FORMAT=$LOG_FORMAT >> .env
-          cat .env
-
       - name: Run generator
         run: |
-          ls -la
+          touch .env
+          echo NAME=${{ vars.NAME }} >> .env
+          echo DESCRIPTION=${{ vars.DESCRIPTION }} >> .env
+          echo LICENSE=${{ vars.LICENSE }} >> .env
+          echo PHP_VERSION=${{ vars.PHP_VERSION }} >> .env
+          echo USER_AGENT=${{ vars.USER_AGENT }} >> .env
+          echo SCHEMA_DIRECTORY="schema/" >> .env
+          echo SDK_REPO=${{ vars.SDK_REPO }} >> .env
+          echo HOMEPAGE=${{ vars.HOMEPAGE }} >> .env
+          echo LOG_FORMAT=${{ vars.LOG_FORMAT }} >> .env
           composer install
           composer sdk:build
 
@@ -64,7 +48,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          repository: $SDK_REPO
+          repository: ${{ vars.SDK_REPO }}
           path: php-sdk
           token: ${{ secrets.PHP_SDK_TOKEN }}
 
