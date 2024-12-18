@@ -28,28 +28,17 @@ jobs:
           fail-fast: true
 
       - name: Create .env file
-        env:
-          NAME: ${{ secrets.NAME }}
-          DESCRIPTION: ${{ secrets.DESCRIPTION }}
-          LICENSE: ${{ secrets.LICENSE }}
-          PHP_VERSION: ${{ secrets.PHP_VERSION }}
-          USER_AGENT: ${{ secrets.USER_AGENT }}
-          SCHEMA_DIRECTORY: "schema/"
-          SDK_REPO: ${{ secrets.SDK_REPO }}
-          HOMEPAGE: ${{ secrets.HOMEPAGE }}
-          LOG_FORMAT: ${{ secrets.LOG_FORMAT }}
         run: |
-          printenv
           touch .env
-          echo NAME=${{ secrets.NAME }} >> .env
-          echo DESCRIPTION=${{ secrets.DESCRIPTION }} >> .env
-          echo LICENSE=${{ secrets.LICENSE }} >> .env
-          echo PHP_VERSION=${{ secrets.PHP_VERSION }} >> .env
-          echo USER_AGENT=${{ secrets.USER_AGENT }} >> .env
+          echo NAME=${{ env.NAME }} >> .env
+          echo DESCRIPTION=${{ env.DESCRIPTION }} >> .env
+          echo LICENSE=${{ env.LICENSE }} >> .env
+          echo PHP_VERSION=${{ env.PHP_VERSION }} >> .env
+          echo USER_AGENT=${{ env.USER_AGENT }} >> .env
           echo SCHEMA_DIRECTORY="schema/" >> .env
-          echo SDK_REPO=${{ secrets.SDK_REPO }} >> .env
-          echo HOMEPAGE=${{ secrets.HOMEPAGE }} >> .env
-          echo LOG_FORMAT=${{ secrets.LOG_FORMAT }} >> .env
+          echo SDK_REPO=${{ env.SDK_REPO }} >> .env
+          echo HOMEPAGE=${{ env.HOMEPAGE }} >> .env
+          echo LOG_FORMAT=${{ env.LOG_FORMAT }} >> .env
           cat .env
 
       - name: Run generator
