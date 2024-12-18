@@ -39,7 +39,8 @@ jobs:
           fail-fast: true
 
       - name: Create .env file
-        environment: production
+        with:
+          environment: production
         run: |
           echo ${{ vars.NAME }}
           touch .env
