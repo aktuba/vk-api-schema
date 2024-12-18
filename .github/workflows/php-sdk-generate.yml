@@ -31,6 +31,7 @@ jobs:
 
       - name: Run generator
         run: |
+          printenv
           touch .env
           echo NAME=\"${{ vars.NAME }}\" >> .env
           echo DESCRIPTION=\"${{ vars.DESCRIPTION }}\" >> .env
@@ -45,20 +46,20 @@ jobs:
           composer install
           composer sdk:build
 
-      - name: Prepare php-sdk
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-          repository: ${{ vars.SDK_REPO }}
-          path: php-sdk
-          token: ${{ secrets.PHP_SDK_TOKEN }}
-
-      - name: Run generator
-        run: |
-          cd php-sdk
-          find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
-          cp -r ../generated/* .
-          git add .
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "<>"
-          git push
+#      - name: Prepare php-sdk
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 1
+#          repository: ${{ vars.SDK_REPO }}
+#          path: php-sdk
+#          token: ${{ secrets.PHP_SDK_TOKEN }}
+#
+#      - name: Run generator
+#        run: |
+#          cd php-sdk
+#          find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
+#          cp -r ../generated/* .
+#          git add .
+#          git config --global user.name "GitHub Actions"
+#          git config --global user.email "<>"
+#          git push
