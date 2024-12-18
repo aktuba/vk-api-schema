@@ -48,14 +48,14 @@ jobs:
           cat .env
           composer install
           composer sdk:build
-#
-#      - name: Prepare php-sdk
-#        uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 1
-#          repository: ${{ vars.SDK_REPO }}
-#          path: php-sdk
-#          token: ${{ secrets.PHP_SDK_TOKEN }}
+
+      - name: Prepare php-sdk
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: ${{ vars.SDK_REPO }}
+          path: php-sdk
+          token: ${{ secrets.PHP_SDK_TOKEN }}
 
       - name: Run generator
         run: |
@@ -67,4 +67,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git comment -m "Autogenerate sdk on $SCHEMA_COMMENT"
-          git push
+#          git push
