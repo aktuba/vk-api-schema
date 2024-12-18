@@ -39,16 +39,17 @@ jobs:
           HOMEPAGE: ${{ secrets.HOMEPAGE }}
           LOG_FORMAT: ${{ secrets.LOG_FORMAT }}
         run: |
+          printenv
           touch .env
-          echo $NAME >> .env
-          echo $DESCRIPTION >> .env
-          echo $LICENSE >> .env
-          echo $PHP_VERSION >> .env
-          echo $USER_AGENT >> .env
-          echo $SCHEMA_DIRECTORY >> .env
-          echo $SDK_REPO >> .env
-          echo $HOMEPAGE >> .env
-          echo $LOG_FORMAT >> .env
+          echo NAME=${{ secrets.NAME }} >> .env
+          echo DESCRIPTION=${{ secrets.DESCRIPTION }} >> .env
+          echo LICENSE=${{ secrets.LICENSE }} >> .env
+          echo PHP_VERSION=${{ secrets.PHP_VERSION }} >> .env
+          echo USER_AGENT=${{ secrets.USER_AGENT }} >> .env
+          echo SCHEMA_DIRECTORY="schema/" >> .env
+          echo SDK_REPO=${{ secrets.SDK_REPO }} >> .env
+          echo HOMEPAGE=${{ secrets.HOMEPAGE }} >> .env
+          echo LOG_FORMAT=${{ secrets.LOG_FORMAT }} >> .env
           cat .env
 
       - name: Run generator
