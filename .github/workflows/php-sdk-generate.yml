@@ -46,24 +46,24 @@ jobs:
           echo SDK_REPO=\"${{ vars.SDK_REPO }}\" >> .env
           echo HOMEPAGE=\"${{ vars.HOMEPAGE }}\" >> .env
           cat .env
-          echo $SCHEMA_COMMENT
           composer install
           composer sdk:build
 
-#      - name: Prepare php-sdk
-#        uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 1
-#          repository: ${{ vars.SDK_REPO }}
-#          path: php-sdk
-#          token: ${{ secrets.PHP_SDK_TOKEN }}
-#
-#      - name: Run generator
-#        run: |
-#          cd php-sdk
-#          find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
-#          cp -r ../generated/* .
-#          git add .
-#          git config --global user.name "GitHub Actions"
-#          git config --global user.email "<>"
-#          git push
+      - name: Prepare php-sdk
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: ${{ vars.SDK_REPO }}
+          path: php-sdk
+          token: ${{ secrets.PHP_SDK_TOKEN }}
+
+      - name: Run generator
+        run: |
+          cd php-sdk
+          find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
+          cp -r ../generated/* .
+          git add .
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "<>"
+          git comment -m "Autogenerate sdk on $SCHEMA_COMMENT"
+          git push
