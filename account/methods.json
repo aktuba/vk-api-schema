@@ -16,6 +16,10 @@
           "type": "integer",
           "format": "int64",
           "entity": "owner"
+        },
+        {
+          "name": "test",
+          "type": "string"
         }
       ],
       "responses": {
