@@ -68,5 +68,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Autogenerate sdk on $SCHEMA_COMMENT"
           git push
-          export TAG = cat ../schema/schema.json | grep -o '"version": "[^"]*' | grep -o '[^"]*$'
-          echo $TAG
+          cat ../schema/schema.json | grep -o '"version": "[^"]*' | grep -o '[^"]*$'
+          git tag test
