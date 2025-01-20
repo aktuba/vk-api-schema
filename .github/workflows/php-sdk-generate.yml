@@ -68,4 +68,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Autogenerate sdk on $SCHEMA_COMMENT"
           git push
-          cat ../schema/schema.json
+          grep 'version' ../schema/schema.json | sed -r 's/^[^:]*:(.*)$/\1/'
