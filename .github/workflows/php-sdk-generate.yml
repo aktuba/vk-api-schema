@@ -68,6 +68,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Autogenerate sdk on $SCHEMA_COMMENT"
           git push
-          git tag v1.0
-          git push origin v1.0
-          cat ../schema/schema.json | grep -o '"version": "[^"]*' | grep -o '[^"]*$'
+          echo "GITHUB_SHA_SHORT=$(cat ../schema/schema.json | grep -o '"version": "[^"]*' | grep -o '[^"]*$')" >> $GITHUB_ENV
+          echo $GITHUB_SHA_SHORT
+#          git tag v1.0
+#          git push origin v1.0
