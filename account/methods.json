@@ -16,12 +16,6 @@
           "type": "integer",
           "format": "int64",
           "entity": "owner"
-        },
-        {
-          "name": "owner_id_2",
-          "type": "integer",
-          "format": "int64",
-          "entity": "owner"
         }
       ],
       "responses": {
